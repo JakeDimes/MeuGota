@@ -9,7 +9,7 @@ def main():
     elif usr == "R":
         server.start()
     else:
-
+        print("[ERROR] INCORRECT SEQUENCE")
 
 
 if __name__ == "__main__":
