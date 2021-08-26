@@ -1,3 +1,5 @@
+import socket
+
 import client
 import server
 import json
@@ -16,7 +18,7 @@ def main():
     usr = input()
     ip, port = parse_config()
     if usr == "S":
-        client.start(port, ip)
+        client.start(port, socket.gethostbyname(socket.gethostname()))
     elif usr == "R":
         server.start(port, ip)
     else:
