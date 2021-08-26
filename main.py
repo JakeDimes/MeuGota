@@ -9,7 +9,7 @@ FILE_PATH = 'config.json'
 
 def parse_config():
     config = json.load(open(FILE_PATH))
-    return config["IP"], config["PORT"]
+    return config["IP"], int(config["PORT"])
 
 
 def main():
@@ -18,9 +18,9 @@ def main():
     usr = input()
     ip, port = parse_config()
     if usr == "S":
-        client.start(port, socket.gethostbyname(socket.gethostname()))
+        client.start(port, ip)
     elif usr == "R":
-        server.start(port, ip)
+        server.start(port, socket.gethostbyname(socket.gethostname()))
     else:
         print("[ERROR] INCORRECT SEQUENCE")
 
