@@ -12,6 +12,7 @@ def start(port, host: str):
     client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
     # connect
+    print(f"[CLIENT] ATTEMPTING TO CONNECT TO: {host}:{port}")
     client.connect((host, port))
 
     print(f"[CLIENT]: CONNECTION TO {host} SUCCESSFUL")
