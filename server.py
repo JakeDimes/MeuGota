@@ -1,9 +1,15 @@
 import socket
+import base64
+import os
 
+def handle_file(client: socket.socket) -> str:
 
-def handle(client: socket.socket) -> str:
+    fTemp = os.open("~/Desktop/Testing/test.txt", 'wb')
+
     buffer = int.from_bytes(client.recv(64), 'little')
-    return client.recv(buffer).decode('utf-8')
+    fileBytes = client.recv(buffer)
+    file = base64.b64decode(fileBytes)
+    os.write(fTemp, file)
 
 
 def start(port, host: str):
@@ -19,7 +25,6 @@ def start(port, host: str):
     # accept the connection
     client, addr = server.accept()
     print(f"[SERVER] CONNECTION ESTABLISHED WITH {addr}")
-    print(f"[MSG] {handle(client)}")
 
     client.close()
     server.close()

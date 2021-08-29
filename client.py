@@ -1,10 +1,17 @@
 import socket
+import base64
 
+def file_handle(client: socket.socket):
+    print("Enter file path:")
+    fpath = input("PATH: ")
 
-def msg_proto(client: socket.socket, msg: str):
-    buffer = len(msg).to_bytes(64, 'little', signed=False)
-    client.send(buffer)
-    client.send(msg.encode('utf-8'))
+    # read binary file
+    file = open(fpath, 'rb')
+    fileBytes = base64.b64encode(file.read())
+
+    buffer = len(fileBytes)
+    client.send(buffer.to_bytes(64, 'little'))
+    client.send(fileBytes)
 
 
 def start(port, host: str):
@@ -16,8 +23,5 @@ def start(port, host: str):
     client.connect((host, port))
 
     print(f"[CLIENT]: CONNECTION TO {host} SUCCESSFUL")
-    print("Enter message: ")
-    msg = input()
 
-    msg_proto(client, msg)
     client.close()
