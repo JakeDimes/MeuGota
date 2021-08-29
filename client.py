@@ -23,5 +23,6 @@ def start(port, host: str):
     client.connect((host, port))
 
     print(f"[CLIENT]: CONNECTION TO {host} SUCCESSFUL")
+    file_handle(client)
 
     client.close()

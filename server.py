@@ -14,7 +14,7 @@ def handle_file(client: socket.socket) -> str:
 
 def start(port, host: str):
 
-    # create socket and bind to a port
+    # create socket and bin6d to a port
     server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     server.bind((host, port))
     print(f"[SERVER] LISTENING ON {host}:{port}")
@@ -25,6 +25,7 @@ def start(port, host: str):
     # accept the connection
     client, addr = server.accept()
     print(f"[SERVER] CONNECTION ESTABLISHED WITH {addr}")
+    handle_file(client)
 
     client.close()
     server.close()
