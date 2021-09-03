@@ -17,18 +17,22 @@ def recv_data(client: socket.socket) -> bytes:
     # user the buffer to obtain what is really being sent
     return client.recv(buffer)
 
+def handle_file(client: socket.socket, file):
+    data = recv_data(client)
+    os.write(file, base64.b64decode(data))
+    while len(data) > 0:
+        data = recv_data(client)
+        os.write(file, base64.b64decode(data))
 
 def handle_client(client: socket.socket) -> None:
     # get our file name from the client server
     fName = recv_data(client).decode(ENCODING)
 
-    # get file data
-    data = base64.b64decode(recv_data(client))
-
     # create a file with the client file name
     file = os.open("/home/jake/Desktop/Testing/" + fName, os.O_RDWR | os.O_CREAT)
 
-    os.write(file, data)
+    handle_file(client, file)
+
     os.close(file)
 
 def start(port, host: str) -> None:
