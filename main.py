@@ -14,12 +14,12 @@ def parse_config():
 
 def main():
 
-    print("Send or receive? [S/R]?")
-    usr = input()
+    usr = input("Send or receive? [S/R]?")
+
     ip, port = parse_config()
-    if usr == "S":
+    if usr.upper() == "S":
         client.start(port, ip)
-    elif usr == "R":
+    elif usr.upper() == "R":
         server.start(port, socket.gethostbyname(socket.gethostname()))
     else:
         print("[ERROR] INCORRECT SEQUENCE")
