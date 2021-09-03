@@ -29,7 +29,7 @@ def handle_client(client: socket.socket) -> None:
     file = os.open("/home/jake/Desktop/Testing/" + fName, os.O_RDWR | os.O_CREAT)
 
     os.write(file, data)
-
+    os.close(file)
 
 def start(port, host: str) -> None:
     # create socket and bin6d to a port

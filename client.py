@@ -15,7 +15,7 @@ def send_data(client: socket.socket, data: bytes):
 
 # gets the file name from the file import string
 def get_file_name(path: str) -> str:
-    startIndex = path.rfind(os.sep)
+    startIndex = path.rfind(os.sep) + 1
     return path[startIndex:]
 
 
