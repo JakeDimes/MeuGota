@@ -35,6 +35,7 @@ def handle_client(client: socket.socket) -> None:
 
     os.close(file)
     # boom new comment
+    # another comment
 def start(port, host: str) -> None:
     # create socket and bin6d to a port
     server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
