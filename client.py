@@ -46,6 +46,7 @@ def file_handle(client: socket.socket):
     # send the file to server
     send_file(client, file)
 
+# some random comment
 
 # this serves as the 'main method' for the client socket
 def start(port, host: str):
