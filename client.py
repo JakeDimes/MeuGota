@@ -18,11 +18,12 @@ def send_file(client: socket.socket, file) -> None:
 
     fileBytes = os.read(file, FILE_READ_SIZE)
     send_data(client, base64.b64encode(fileBytes))
+
     while len(fileBytes) > 0:
         fileBytes = os.read(file, FILE_READ_SIZE)
+
         send_data(client, base64.b64encode(fileBytes))
 
-    send_data(client, fileBytes)
 
 # gets the file name from the file import string
 def get_file_name(path: str) -> str:

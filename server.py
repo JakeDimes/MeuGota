@@ -14,7 +14,7 @@ def recv_data(client: socket.socket) -> bytes:
     bufferBytes = client.recv(DEFAULT_BUFFER_SIZE)
     buffer = int.from_bytes(bufferBytes, BYTE_ORDER)
 
-    # user the buffer to obtain what is really being sent
+    # use the buffer to obtain what is really being sent
     return client.recv(buffer)
 
 def handle_file(client: socket.socket, file):
@@ -23,6 +23,7 @@ def handle_file(client: socket.socket, file):
     while len(data) > 0:
         data = recv_data(client)
         os.write(file, base64.b64decode(data))
+        print("Writing")
 
 def handle_client(client: socket.socket) -> None:
     # get our file name from the client server
