@@ -9,11 +9,13 @@ FILE_READ_SIZE = 4096
 
 # this function sends data to the server socket. It will calculate a buffer and send the 'data' variable
 def send_data(client: socket.socket, data: bytes):
+
     buffer = len(data)
     client.send(buffer.to_bytes(DEFAULT_BUFFER_SIZE, BYTE_ORDER))
     client.send(data)
 
 def send_file(client: socket.socket, file) -> None:
+
     fileBytes = os.read(file, FILE_READ_SIZE)
     send_data(client, base64.b64encode(fileBytes))
     while len(fileBytes) > 0:
@@ -24,6 +26,7 @@ def send_file(client: socket.socket, file) -> None:
 
 # gets the file name from the file import string
 def get_file_name(path: str) -> str:
+
     startIndex = path.rfind(os.sep) + 1
     return path[startIndex:]
 
